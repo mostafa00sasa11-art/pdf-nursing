@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mostafa Wahed | Nursing Hub</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background:#030712;
+    color:#e8fbff;
+    font-family:Arial,Tahoma,sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* خلفية النجوم */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+    radial-gradient(#39d9ff 1px,transparent 1px),
+    radial-gradient(#18f0d0 1px,transparent 1px);
+    background-size:55px 55px,85px 85px;
+    opacity:.12;
+}
+
+/* الهيدر */
+header{
+    text-align:center;
+    padding:55px 20px 35px;
+    position:relative;
+}
+
+.portal{
+    width:140px;
+    height:140px;
+    border:2px solid #39d9ff;
+    border-radius:50%;
+    margin:auto;
+    box-shadow:
+        0 0 15px #39d9ff,
+        0 0 50px #18f0d055,
+        inset 0 0 30px #39d9ff44;
+    animation:portal 3s infinite ease-in-out;
+}
+
+@keyframes portal{
+    50%{
+        transform:scale(1.08);
+        box-shadow:
+        0 0 35px #18f0d0,
+        0 0 90px #39d9ff55,
+        inset 0 0 40px #18f0d0;
+    }
+}
+
+.small-title{
+    color:#18f0d0;
+    letter-spacing:4px;
+    font-size:12px;
+    margin-top:25px;
+}
+
+h1{
+    font-size:clamp(40px,8vw,75px);
+    margin:10px 0;
+    background:linear-gradient(90deg,#39d9ff,#18f0d0);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.quote{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.welcome{
+    color:#8da9b8;
+    margin-top:10px;
+}
+
+/* المحتوى */
+.container{
+    width:min(1050px,92%);
+    margin:auto;
+}
+
+/* البحث */
+.search{
+    width:100%;
+    padding:17px 20px;
+    margin:20px 0 30px;
+    border-radius:16px;
+    border:1px solid #12334a;
+    outline:none;
+    background:#06101c;
+    color:white;
+    font-size:16px;
+}
+
+.search:focus{
+    border-color:#39d9ff;
+    box-shadow:0 0 20px #39d9ff22;
+}
+
+/* بطاقة الهيكل العظمي */
+.skeleton-card{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    background:#06101ccc;
+    border:1px solid #12334a;
+    border-radius:22px;
+    padding:25px;
+    margin-bottom:35px;
+}
+
+.skeleton{
+    width:90px;
+    height:150px;
+    position:relative;
+    filter:drop-shadow(0 0 7px #39d9ff);
+    animation:float 3s infinite ease-in-out;
+}
+
+@keyframes float{
+    50%{
+        transform:translateY(-7px);
+    }
+}
+
+.bone{
+    position:absolute;
+    background:#39d9ff;
+    border-radius:10px;
+}
+
+.head{
+    width:32px;
+    height:32px;
+    border:3px solid #39d9ff;
+    background:transparent;
+    border-radius:50%;
+    top:0;
+    left:29px;
+}
+
+.spine{
+    width:7px;
+    height:80px;
+    top:38px;
+    left:42px;
+}
+
+.arm1{
+    width:55px;
+    height:5px;
+    top:55px;
+    left:-3px;
+    transform:rotate(25deg);
+}
+
+.arm2{
+    width:55px;
+    height:5px;
+    top:55px;
+    right:-3px;
+    transform:rotate(-25deg);
+}
+
+.leg1{
+    width:5px;
+    height:65px;
+    top:110px;
+    left:30px;
+    transform:rotate(8deg);
+}
+
+.leg2{
+    width:5px;
+    height:65px;
+    top:110px;
+    left:58px;
+    transform:rotate(-8deg);
+}
+
+/* عنوان المحاضرات */
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.section-title h2{
+    font-size:27px;
+}
+
+#count{
+    color:#8da9b8;
+}
+
+/* المحاضرات */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:17px;
+    padding-bottom:80px;
+}
+
+.card{
+    background:linear-gradient(145deg,#071727,#050c16);
+    border:1px solid #12334a;
+    border-radius:18px;
+    padding:20px;
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#18d9d0;
+    box-shadow:0 10px 35px #00d9ff15;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#8da9b8;
+    font-size:13px;
+    margin-bottom:17px;
+}
+
+.buttons{
+    display:flex;
+    gap:8px;
+}
+
+button,
+.download{
+    flex:1;
+    border:1px solid #17465a;
+    background:#071522;
+    color:white;
+    padding:11px;
+    border-radius:10px;
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
+}
+
+button:hover,
+.download:hover{
+    border-color:#39d9ff;
+}
+
+.read{
+    background:#087782;
+    border-color:#18f0d0;
+}
+
+/* زر AI */
+.ai{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:#061521;
+    border:1px solid #39d9ff;
+    color:#39d9ff;
+    font-weight:bold;
+    font-size:17px;
+    box-shadow:0 0 25px #39d9ff44;
+    cursor:pointer;
+    z-index:50;
+}
+
+/* نافذة PDF */
+dialog{
+    width:min(1000px,94vw);
+    height:min(850px,90vh);
+    padding:0;
+    border:1px solid #17465a;
+    border-radius:18px;
+    background:#020812;
+    color:white;
+    overflow:hidden;
+}
+
+dialog::backdrop{
+    background:#000c;
+    backdrop-filter:blur(5px);
+}
+
+.reader-header{
+    height:60px;
+    padding:0 15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#061321;
+    border-bottom:1px solid #12334a;
+}
+
+#timer{
+    color:#18f0d0;
+    margin-left:10px;
+}
+
+#pdf{
+    width:100%;
+    height:calc(100% - 60px);
+    border:0;
+}
+
+.close{
+    flex:none;
+    width:auto;
+}
+
+/* موبايل */
+@media(max-width:600px){
+
+    .skeleton-card{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    header{
+        padding-top:40px;
+    }
+
+    .portal{
+        width:110px;
+        height:110px;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .download,
+    button{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="portal"></div>
+
+    <div class="small-title">
+        NURSING • STUDY • SPACE
+    </div>
+
+    <h1>Mostafa Wahed</h1>
+
+    <div class="quote">
+        تعب صغير عشان آمالكم الكبيرة
+    </div>
+
+    <div class="welcome">
+        أهلاً بيكم في منصة مذاكرة التمريض 🚀
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <!-- البحث -->
+    <input
+        id="search"
+        class="search"
+        type="text"
+        placeholder="🔎 ابحث عن محاضرة..."
+    >
+
+
+    <!-- الهيكل -->
+    <section class="skeleton-card">
+
+        <div class="skeleton">
+
+            <span class="bone head"></span>
+            <span class="bone spine"></span>
+            <span class="bone arm1"></span>
+            <span class="bone arm2"></span>
+            <span class="bone leg1"></span>
+            <span class="bone leg2"></span>
+
+        </div>
+
+        <div>
+
+            <h2>
+                جاهز للمذاكرة؟
+            </h2>
+
+            <p style="color:#8da9b8;margin-top:8px;">
+                اختار المحاضرة، افتحها وابدأ وقت مذاكرتك.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- المحاضرات -->
+    <section>
+
+        <div class="section-title">
+
+            <h2>
+                📚 المحاضرات
+            </h2>
+
+            <span id="count"></span>
+
+        </div>
+
+
+        <div id="lectures" class="grid"></div>
+
+    </section>
+
+</main>
+
+
+<!-- AI -->
+<button class="ai" onclick="aiMessage()">
+    AI
+</button>
+
+
+<!-- قارئ PDF -->
+<dialog id="reader">
+
+    <div class="reader-header">
+
+        <strong id="readerTitle">
+            المحاضرة
+        </strong>
+
+        <div>
+
+            <span id="timer">
+                00:00:00
+            </span>
+
+            <button
+                class="close"
+                onclick="closeReader()"
+            >
+                إغلاق
+            </button>
+
+        </div>
+
+    </div>
+
+    <iframe
+        id="pdf"
+        title="PDF Reader"
+    ></iframe>
+
+</dialog>
+
+
+<script>
+
+/*
+=================================================
+المحاضرات
+=================================================
+
+لما نرفع PDF في فولدر اسمه pdfs
+نكتب اسمه هنا.
+
+مثال:
+
+{
+    title:"Fundamentals of Nursing",
+    file:"pdfs/fundamentals.pdf"
+}
+
+=================================================
+*/
+
+const lectures = [
+
+    {
+        title:"Fundamentals of Nursing",
+        file:"pdfs/fundamentals.pdf"
+    },
+
+    {
+        title:"Anatomy",
+        file:"pdfs/anatomy.pdf"
+    },
+
+    {
+        title:"Physiology",
+        file:"pdfs/physiology.pdf"
+    }
+
+];
+
+
+/* عناصر الصفحة */
+
+const lecturesBox =
+    document.getElementById("lectures");
+
+const search =
+    document.getElementById("search");
+
+const count =
+    document.getElementById("count");
+
+const reader =
+    document.getElementById("reader");
+
+const pdf =
+    document.getElementById("pdf");
+
+const readerTitle =
+    document.getElementById("readerTitle");
+
+const timer =
+    document.getElementById("timer");
+
+
+/* الوقت */
+
+let seconds = 0;
+let timerInterval;
+
+
+/* عرض المحاضرات */
+
+function renderLectures(){
+
+    const text =
+        search.value.toLowerCase().trim();
+
+    const results =
+        lectures.filter(function(item){
+
+            return item.title
+                .toLowerCase()
+                .includes(text);
+
+        });
+
+
+    count.innerText =
+        results.length + " محاضرة";
+
+
+    lecturesBox.innerHTML = "";
+
+
+    results.forEach(function(item,index){
+
+        const card =
+            document.createElement("div");
+
+        card.className = "card";
+
+
+        card.innerHTML = `
+
+            <h3>
+                📄 ${escapeHTML(item.title)}
+            </h3>
+
+            <p>
+                ملف PDF • جاهز للقراءة والتحميل
+            </p>
+
+            <div class="buttons">
+
+                <button
+                    class="read"
+                    onclick="openPDF(${index})"
+                >
+                    فتح وقراءة
+                </button>
+
+                <a
+                    class="download"
+                    href="${item.file}"
+                    download
+                >
+                    تحميل
+                </a>
+
+            </div>
+
+        `;
+
+
+        lecturesBox.appendChild(card);
+
+    });
+
+
+    if(results.length === 0){
+
+        lecturesBox.innerHTML = `
+
+            <div style="
+                color:#8da9b8;
+                text-align:center;
+                grid-column:1/-1;
+                padding:40px;
+            ">
+
+                مفيش محاضرة بالاسم ده 🔎
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* فتح PDF */
+
+function openPDF(index){
+
+    const text =
+        search.value.toLowerCase().trim();
+
+
+    const results =
+        lectures.filter(function(item){
+
+            return item.title
+                .toLowerCase()
+                .includes(text);
+
+        });
+
+
+    const selected =
+        results[index];
+
+
+    if(!selected) return;
+
+
+    readerTitle.innerText =
+        selected.title;
+
+
+    pdf.src =
+        selected.file;
+
+
+    seconds = 0;
+
+    updateTimer();
+
+
+    clearInterval(timerInterval);
+
+
+    timerInterval =
+        setInterval(function(){
+
+            seconds++;
+
+            updateTimer();
+
+        },1000);
+
+
+    reader.showModal();
+
+}
+
+
+/* إغلاق PDF */
+
+function closeReader(){
+
+    clearInterval(timerInterval);
+
+    reader.close();
+
+    pdf.src = "";
+
+
+    alert(
+        "👏 عاش! وقت مذاكرتك كان " +
+        formatTime(seconds)
+    );
+
+}
+
+
+/* تحديث الوقت */
+
+function updateTimer(){
+
+    timer.innerText =
+        formatTime(seconds);
+
+}
+
+
+function formatTime(total){
+
+    const h =
+        Math.floor(total / 3600);
+
+    const m =
+        Math.floor((total % 3600) / 60);
+
+    const s =
+        total % 60;
+
+
+    return (
+
+        String(h).padStart(2,"0")
+        + ":" +
+        String(m).padStart(2,"0")
+        + ":" +
+        String(s).padStart(2,"0")
+
+    );
+
+}
+
+
+/* البحث */
+
+search.addEventListener(
+    "input",
+    renderLectures
+);
+
+
+/* حماية عرض النص */
+
+function escapeHTML(text){
+
+    return text.replace(
+        /[&<>"']/g,
+        function(char){
+
+            return {
+
+                "&":"&amp;",
+                "<":"&lt;",
+                ">":"&gt;",
+                '"':"&quot;",
+                "'":"&#039;"
+
+            }[char];
+
+        }
+    );
+
+}
+
+
+/* AI مؤقت */
+
+function aiMessage(){
+
+    alert(
+        "🤖 مساعد التمريض\n\n" +
+        "هنربط المساعد بالذكاء الاصطناعي " +
+        "في المرحلة القادمة."
+    );
+
+}
+
+
+/* تشغيل */
+
+renderLectures();
+
+</script>
+
+</body>
+</html>
